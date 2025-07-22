@@ -12,6 +12,7 @@ def place_order():
 
     try:
         resp = requests.get(f'http://product_service:5002/products')
+        #resp = requests.get(f'http://127.0.0.1:5002/products')
         products = resp.json()
         product_exists = any(p['id'] == product_id for p in products)
 
@@ -28,4 +29,4 @@ def get_orders():
     return jsonify(orders), 200
 
 if __name__ == '__main__':
-    app.run(port=5003)
+    app.run(host='0.0.0.0', port=5003)
